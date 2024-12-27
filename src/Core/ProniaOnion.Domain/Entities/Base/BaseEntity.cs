@@ -12,5 +12,10 @@ namespace ProniaOnion.Domain.Entities
         public bool IsDeleted { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
+        public string CreatedBy { get; set; }
+        protected BaseEntity()
+        {
+            CreatedBy = "admin";
+        }
     }
 }
