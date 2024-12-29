@@ -143,17 +143,9 @@ namespace ProniaOnion.Persistence.Contexts.Migrations
                     b.Property<int>("ColorId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductColorColorId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductColorProductId")
-                        .HasColumnType("int");
-
                     b.HasKey("ProductId", "ColorId");
 
                     b.HasIndex("ColorId");
-
-                    b.HasIndex("ProductColorProductId", "ProductColorColorId");
 
                     b.ToTable("ProductColors");
                 });
@@ -183,10 +175,6 @@ namespace ProniaOnion.Persistence.Contexts.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProniaOnion.Domain.Entities.ProductColor", null)
-                        .WithMany("ProductColors")
-                        .HasForeignKey("ProductColorProductId", "ProductColorColorId");
-
                     b.Navigation("Color");
 
                     b.Navigation("Product");
@@ -198,11 +186,6 @@ namespace ProniaOnion.Persistence.Contexts.Migrations
                 });
 
             modelBuilder.Entity("ProniaOnion.Domain.Entities.Color", b =>
-                {
-                    b.Navigation("ProductColors");
-                });
-
-            modelBuilder.Entity("ProniaOnion.Domain.Entities.ProductColor", b =>
                 {
                     b.Navigation("ProductColors");
                 });
