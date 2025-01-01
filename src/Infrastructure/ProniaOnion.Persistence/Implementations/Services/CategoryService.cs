@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using ProniaOnion.Application.Abstractions.Repositories;
 using ProniaOnion.Application.Abstractions.Services;
 using ProniaOnion.Application.DTOs.Categories;
@@ -16,10 +17,12 @@ namespace ProniaOnion.Persistence.Implementations.Services
     internal class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IMapper _mapper;
 
-        public CategoryService(ICategoryRepository categoryRepository)
+        public CategoryService(ICategoryRepository categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
         public async Task CreateAsync(CreateCategoryDto categoryDto)
         {
@@ -28,12 +31,11 @@ namespace ProniaOnion.Persistence.Implementations.Services
                 throw new Exception("Already Exists");
             }
 
-            await _categoryRepository.AddAsync(new Category
-            {
-                Name = categoryDto.Name,
-                CreatedAt=DateTime.Now,
-                ModifiedAt=DateTime.Now 
-            });
+            var category = _mapper.Map<Category>(categoryDto);
+            category.CreatedAt=DateTime.Now;
+            category.ModifiedAt=DateTime.Now;
+
+            await _categoryRepository.AddAsync(category);
             await _categoryRepository.SaveChangesAsync();
 
            
@@ -50,11 +52,11 @@ namespace ProniaOnion.Persistence.Implementations.Services
 
         public async Task<IEnumerable<CategoryItemDto>> GetAllAsync(int page, int take)
         {
-            IEnumerable<CategoryItemDto> categories = await _categoryRepository
+            IEnumerable<Category> categories = await _categoryRepository
             .GetAll(skip: (page - 1) * take, take: take)
-            .Select(c => new CategoryItemDto(c.Id, c.Name))
+            
             .ToListAsync();
-            return categories;
+            return _mapper.Map<IEnumerable<CategoryItemDto>>(categories);
      
         }
 
@@ -63,8 +65,9 @@ namespace ProniaOnion.Persistence.Implementations.Services
             Category category = await _categoryRepository.GetByIdAsync(id, nameof(Category.Products));
             if (category == null) return null;
             
-            GetCategoryDto categoryDto = new(category.Id,category.Name,category.Products
-                .Select(p => new ProductItemDto(p.Id,p.Price,p.Name,p.SKU,p.Description)).ToList());
+            //GetCategoryDto categoryDto = new(category.Id,category.Name,category.Products
+            //    .Select(p => new ProductItemDto(p.Id,p.Price,p.Name,p.SKU,p.Description)).ToList());
+            GetCategoryDto categoryDto = _mapper.Map<GetCategoryDto>(category);
             
           
             return categoryDto;
@@ -74,8 +77,10 @@ namespace ProniaOnion.Persistence.Implementations.Services
         {
             Category category = await _categoryRepository.GetByIdAsync(id);
             if (category == null) throw new Exception("Not Found");
+
             if (await _categoryRepository.AnyAsync(c => c.Name == categoryDto.Name && c.Id != id)) throw new Exception("Already exists");
-            category.Name = categoryDto.Name;
+            category = _mapper.Map(categoryDto,category);
+            
             category.ModifiedAt= DateTime.Now;
             _categoryRepository.Update(category);
             await _categoryRepository.SaveChangesAsync();
