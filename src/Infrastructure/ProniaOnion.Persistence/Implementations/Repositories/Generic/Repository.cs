@@ -31,6 +31,7 @@ namespace ProniaOnion.Persistence.Implementations.Repositories
             Expression<Func<T, object>>? orderExpression = null,
             bool isDescending = false,
             bool isTracking = false,
+            bool ignoreQuer=false,
             params string[]? includes)
         {
 
@@ -60,6 +61,9 @@ namespace ProniaOnion.Persistence.Implementations.Repositories
             {
                 query = query.Take(take);
             }
+
+            if(ignoreQuer)
+           query = query.IgnoreQueryFilters();
 
             return isTracking ? query : query.AsNoTracking();
 

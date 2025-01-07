@@ -13,6 +13,7 @@ namespace ProniaOnion.Application.Abstractions.Repositories
             Expression<Func<T, object>>? orderExpression = null,
             bool isDescending = false,
             bool isTracking = false,
+            bool ignoreQuery=false,
             params string[]? includes);
         Task<T> GetByIdAsync(int id, params string[] includes);
 
