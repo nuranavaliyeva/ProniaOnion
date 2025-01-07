@@ -20,9 +20,10 @@ namespace ProniaOnion.Application.Validator
             RuleFor(c => c.Name)
                 .NotEmpty().WithMessage("Data required")
                 .MaximumLength(100)
-                .Matches(@"^[A-Za-z\s0-9]*$");
-                //.MustAsync(CheckNameExistence);
-               
+                .Matches(@"^[A-Za-z\s0-9]*$")
+                .MustAsync(CheckNameExistence)
+                    .WithMessage("Category already exists");
+
         }
         public async Task<bool> CheckNameExistence(string name, CancellationToken token )
         {
