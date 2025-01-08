@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProniaOnion.Application.DTOs.Products
+namespace ProniaOnion.Application.DTOs.Color
 {
-    public record ProductItemDto(int Id, decimal Price,string Name);
+    public record ColorItemDto(int Id, string Name) { }
+    
     
 }
