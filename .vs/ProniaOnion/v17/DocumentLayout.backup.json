@@ -106,8 +106,7 @@
               "RelativeToolTip": "src\\Core\\ProniaOnion.Application\\Validator\\CreateCategoryDtoValidator.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAqwBgAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-01T05:56:47.342Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-01T05:56:47.342Z"
             },
             {
               "$type": "Document",
@@ -143,8 +142,7 @@
               "RelativeToolTip": "src\\Core\\ProniaOnion.Application\\ServiceRegistration\\ServiceRegistration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAACCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-01T04:14:03.89Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-01T04:14:03.89Z"
             },
             {
               "$type": "Document",
@@ -204,8 +202,7 @@
               "RelativeToolTip": "presentation\\ProniaOnion.API\\Controllers\\CategoriesController.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAYwDgAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-29T07:00:29.663Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-29T07:00:29.663Z"
             },
             {
               "$type": "Document",
@@ -215,7 +212,7 @@
               "RelativeDocumentMoniker": "src\\Infrastructure\\ProniaOnion.Persistence\\Implementations\\Services\\CategoryService.cs",
               "ToolTip": "C:\\Users\\Nuran\\Desktop\\ProniaOnion\\src\\Infrastructure\\ProniaOnion.Persistence\\Implementations\\Services\\CategoryService.cs",
               "RelativeToolTip": "src\\Infrastructure\\ProniaOnion.Persistence\\Implementations\\Services\\CategoryService.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAIwB8AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAA9wFgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-29T06:38:43.718Z",
               "EditorCaption": ""
