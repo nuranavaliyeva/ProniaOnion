@@ -41,9 +41,9 @@ namespace ProniaOnion.Application.Validator
                 .NotEmpty()
                 .Must(colorId=>colorId>0);
 
-            RuleFor(p => p.ColorIds)
-                .NotEmpty()
-                .Must(ci => ci.Count > 0);
+            //RuleFor(p => p.ColorIds)
+            //    .NotEmpty()
+            //    .Must(ci => ci.Count > 0);
 
 
 

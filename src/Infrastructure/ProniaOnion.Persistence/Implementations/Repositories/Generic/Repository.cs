@@ -13,7 +13,7 @@ namespace ProniaOnion.Persistence.Implementations.Repositories
 {
     internal class Repository<T> : IRepository<T> where T : BaseEntity, new()
     {
-        private readonly AppDbContext _context;
+        protected readonly AppDbContext _context;
         private readonly DbSet<T> _table;
 
         public Repository(AppDbContext context)
@@ -93,6 +93,7 @@ namespace ProniaOnion.Persistence.Implementations.Repositories
 
         public async Task<int> SaveChangesAsync()
         {
+            
             return await _context.SaveChangesAsync();
         }
         private IQueryable<T> _getIncludes(IQueryable<T> query, params string[] includes)
@@ -107,6 +108,7 @@ namespace ProniaOnion.Persistence.Implementations.Repositories
 
         public Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
+            
             return _table.AnyAsync(expression);
         }
     }
